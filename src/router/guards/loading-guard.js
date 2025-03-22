@@ -1,19 +1,19 @@
-// import NProgress from 'nprogress'
-// import 'nprogress/nprogress.css'
+import { createDiscreteApi } from 'naive-ui'
+const { loadingBar } = createDiscreteApi(['loadingBar'])
 
-// /**
-//  * 路由加载动画
-//  */
-// export function createLoadingGuard(router) {
-//   router.beforeEach(() => {
-//     NProgress.start()
-//   })
-//   router.afterEach(() => {
-//     setTimeout(() => {
-//       NProgress.done()
-//     }, 100)
-//   })
-//   router.onError(() => {
-//     NProgress.done()
-//   })
-// }
+/**
+ * 路由加载动画
+ */
+export function createLoadingGuard(router) {
+  router.beforeEach(() => {
+    loadingBar.start()
+  })
+  router.afterEach(() => {
+    setTimeout(() => {
+      loadingBar.finish()
+    }, 100)
+  })
+  router.onError(() => {
+    loadingBar.error()
+  })
+}
