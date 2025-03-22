@@ -22,7 +22,7 @@ function getLayout(name) {
   return layout
 }
 
-const defaultLayout = 'simple'
+const defaultLayout = 'default'
 const Layout = computed(() => {
   if (!route.matched?.length) return null
   return getLayout(route.meta?.layout || defaultLayout)
