@@ -1,5 +1,15 @@
 <script setup>
 import { useRoute } from 'vue-router'
+import { zhCN, dateZhCN } from 'naive-ui'
+
+const themeOverrides = {
+  common: {
+    primaryColor: '#165dff',
+    primaryColorHover: '#4080ff',
+    primaryColorPressed: '#0d42d2',
+    primaryColorSuppl: '#6aa1ff'
+  }
+}
 
 const route = useRoute()
 const layouts = new Map()
@@ -20,11 +30,11 @@ const Layout = computed(() => {
 </script>
 
 <template>
-  <a-config-provider>
+  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme-overrides="themeOverrides" wh-full>
     <router-view v-slot="{ Component, route: curRoute }">
       <component :is="Layout">
         <component :is="Component" :key="curRoute.fullPath" />
       </component>
     </router-view>
-  </a-config-provider>
+  </n-config-provider>
 </template>

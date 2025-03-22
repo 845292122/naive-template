@@ -1,17 +1,17 @@
 <script setup>
 import loginIll from '~/assets/login/login-ill.svg'
 import LoginBg from './login-bg.vue'
-import loginForm from './login-form.vue'
+import LoginForm from './login-form.vue'
 </script>
 
 <template>
   <div wh-full flex>
-    <div min-w-800 min-h-400 m-a card-shadow bg-white flex z-1000>
+    <div min-w-900 min-h-450 m-a card-shadow bg-white flex z-1000>
       <div class="login-illustration" flex justify-center items-center flex-1>
         <img w-280 :src="loginIll" alt="login-ill" />
       </div>
       <div flex-1>
-        <loginForm />
+        <LoginForm />
       </div>
     </div>
     <LoginBg />

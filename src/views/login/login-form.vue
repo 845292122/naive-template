@@ -1,51 +1,56 @@
 <script setup>
-import { useAuthStore } from '~/store'
-import { _localStorage, jscrypt } from '~/utils'
-import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-import { useRouter } from 'vue-router'
+import { IdcardFilled, LockFilled, WechatFilled } from '@vicons/antd'
+import { Icon } from '@vicons/utils'
 
-const authStore = useAuthStore()
-const router = useRouter()
-const PHONE_KEY = 'login-phone'
-const PWD_KEY = 'login-pwd'
-const REM_KEY = 'login-rem'
-const EXPIRE_MS = 30 * 24 * 60 * 60 * 1000
-
-const loginRef = ref()
-const title = import.meta.env.VITE_APP_TITLE
-const loginForm = ref({
+const formRef = ref()
+const formValue = ref({
   phone: '',
   password: '',
-  rememberMe: true
+  rememberMe: false
 })
-const loading = ref(false)
-const loginRules = {
-  phone: [{ required: true, trigger: 'blur', message: '请输入手机号' }],
-  password: [{ required: true, trigger: 'blur', message: '请输入密码' }]
-}
+const rules = []
 </script>
 
 <template>
-  <div flex justify-center items-center h-full>
-    <a-form ref="loginRef" :model="loginForm" :rules="loginRules" w-full p-60>
-      <h2 text-center mb-20 text-20>{{ title }}</h2>
-      <a-form-item name="phone">
-        <a-input v-model:value="loginForm.phone" placeholder="手机号">
-          <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
-        </a-input>
-      </a-form-item>
-      <a-form-item name="password" type="password">
-        <a-input v-model:value="loginForm.password" placeholder="密码">
-          <template #prefix><LockOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
-        </a-input>
-      </a-form-item>
-      <a-tooltip placement="right">
-        <template #title>保存账号密码30天</template>
-        <a-checkbox v-model="loginForm.rememberMe">记住密码</a-checkbox>
-      </a-tooltip>
-      <a-form-item mt-5>
-        <a-button type="primary" block>登 录</a-button>
-      </a-form-item>
-    </a-form>
+  <div flex justify-center items-center h-full w-full>
+    <n-form ref="formRef" :model="formValue" :rules="rules" label-placement="left" :show-label="false" w-7xl>
+      <h2 mb-20 text-20>欢迎使用</h2>
+      <n-form-item label="账号" path="phone">
+        <n-input v-model:value="formValue.phone" placeholder="请输入手机号">
+          <template #prefix>
+            <Icon size="18">
+              <IdcardFilled />
+            </Icon>
+          </template>
+        </n-input>
+      </n-form-item>
+      <n-form-item label="密码" path="password">
+        <n-input v-model:value="formValue.password" placeholder="请输入密码" type="password" show-password-on="mousedown">
+          <template #prefix>
+            <Icon size="18">
+              <LockFilled />
+            </Icon>
+          </template>
+        </n-input>
+      </n-form-item>
+      <n-tooltip trigger="hover" placement="right">
+        <template #trigger>
+          <n-checkbox v-model:checked="formValue.rememberMe">记住我</n-checkbox>
+        </template>
+        保存账号密码30天
+      </n-tooltip>
+      <n-form-item mt-10>
+        <n-button attr-type="button" block type="primary"> 登 录 </n-button>
+      </n-form-item>
+      <n-divider style="margin: 0">其他登录方式</n-divider>
+      <n-button attr-type="button" block mt-10>
+        <template #icon>
+          <Icon color="green">
+            <WechatFilled />
+          </Icon>
+        </template>
+        通过微信登录
+      </n-button>
+    </n-form>
   </div>
 </template>
