@@ -13,9 +13,9 @@ const rules = []
 
 <template>
   <div flex justify-center items-center h-full w-full>
-    <n-form ref="formRef" :model="formValue" :rules="rules" label-placement="left" :show-label="false" w-7xl>
+    <n-form ref="formRef" :model="formValue" :rules="rules" label-placement="top" :show-label="false" w-7xl>
       <h2 mb-20 text-20>欢迎使用</h2>
-      <n-form-item label="账号" path="phone">
+      <n-form-item label="手机号" path="phone">
         <n-input v-model:value="formValue.phone" placeholder="请输入手机号">
           <template #prefix>
             <Icon size="18">
@@ -33,16 +33,14 @@ const rules = []
           </template>
         </n-input>
       </n-form-item>
-      <n-tooltip trigger="hover" placement="right">
+      <n-tooltip trigger="hover" placement="right-end">
         <template #trigger>
           <n-checkbox v-model:checked="formValue.rememberMe">记住我</n-checkbox>
         </template>
         保存账号密码30天
       </n-tooltip>
-      <n-form-item mt-10>
-        <n-button attr-type="button" block type="primary"> 登 录 </n-button>
-      </n-form-item>
-      <n-divider style="margin: 0">其他登录方式</n-divider>
+      <n-button attr-type="button" block type="primary" mt-5> 登 录 </n-button>
+      <n-divider>其他登录方式</n-divider>
       <n-button attr-type="button" block mt-10>
         <template #icon>
           <Icon color="green">

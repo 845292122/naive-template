@@ -6,7 +6,7 @@ import LoginForm from './login-form.vue'
 
 <template>
   <div wh-full flex>
-    <div min-w-900 min-h-450 m-a card-shadow bg-white flex z-1000>
+    <div min-w-900 min-h-500 m-a card-shadow bg-white flex z-1000>
       <div class="login-illustration" flex justify-center items-center flex-1>
         <img w-280 :src="loginIll" alt="login-ill" />
       </div>
