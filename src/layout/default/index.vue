@@ -2,6 +2,7 @@
 import SideMenu from '../components/SideMenu'
 import Logo from '../components/Logo.vue'
 import SettingMenu from '../components/SettingMenu'
+import Notice from '../components/Notice.vue'
 import { useAppStore } from '~/store'
 
 const appStore = useAppStore()
@@ -12,7 +13,12 @@ const appStore = useAppStore()
     <n-layout-header style="height: 64px" bordered px-20>
       <div flex justify-between wh-full items-center>
         <Logo />
-        <div><SettingMenu /></div>
+        <div flex>
+          <div mr-20>
+            <Notice />
+          </div>
+          <SettingMenu />
+        </div>
       </div>
     </n-layout-header>
     <n-layout position="absolute" style="top: 64px" has-sider>
