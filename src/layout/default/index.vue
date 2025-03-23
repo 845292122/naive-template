@@ -24,7 +24,7 @@ const appStore = useAppStore()
     <n-layout position="absolute" style="top: 64px" has-sider>
       <n-layout-sider
         :width="220"
-        show-trigger="true"
+        show-trigger="bar"
         bordered
         collapse-mode="width"
         :collapsed="appStore.menuCollapsed"
