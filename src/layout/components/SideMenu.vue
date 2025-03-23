@@ -1,198 +1,32 @@
 <script setup>
-import { AccountBookFilled, AimOutlined } from '@vicons/antd'
-import { renderIcon } from '~/utils'
-import { useAppStore } from '~/store'
+import { RouteUtil } from '~/utils'
+import { useAppStore, useAuthStore } from '~/store'
+import { bizRoutes } from '~/router/routes'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
 const appStore = useAppStore()
+const authStore = useAuthStore()
+const router = useRouter()
 
-// TODO 侧边栏测试数据
-const testOptions = [
-  {
-    label: 'Home',
-    key: 'home',
-    icon: renderIcon(AccountBookFilled)
-  },
-  {
-    label: 'Test',
-    key: 'test1',
-    icon: renderIcon(AimOutlined),
-    children: [
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      }
-    ]
-  },
-  {
-    label: 'Test',
-    key: 'test',
-    icon: renderIcon(AimOutlined),
-    children: [
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      },
-      {
-        label: 'Test2',
-        key: 'test2'
-      },
-      {
-        label: 'Test1',
-        key: 'test1'
-      }
-    ]
-  }
-]
+const { perms } = storeToRefs(authStore)
+
+const menuOptions = RouteUtil.transformToMenu(RouteUtil.filterPermRoutes(bizRoutes, perms.value))
+
+function handleMenuSelect(key) {
+  router.push(key)
+}
 </script>
 
 <template>
   <n-menu
-    :options="testOptions"
+    :options="menuOptions"
     accordion
     :collapsed="appStore.menuCollapsed"
     :collapsed-width="64"
     :collapsed-icon-size="20"
     :indent="24"
     :width="220"
+    @update:value="handleMenuSelect"
   />
 </template>

@@ -1,11 +1,22 @@
+import { SettingFilled, HomeFilled } from '@vicons/antd'
+
 export const bizRoutes = [
+  {
+    name: 'Home',
+    path: '/',
+    component: () => import('~/views/home/index.vue'),
+    meta: {
+      title: '首页',
+      icon: HomeFilled
+    }
+  },
   {
     name: 'system',
     path: '/system',
     redirect: '/system/user',
     meta: {
       title: '系统管理',
-      icon: 'bi:gear-fill'
+      icon: SettingFilled
     },
     children: [
       {
@@ -14,7 +25,6 @@ export const bizRoutes = [
         component: () => import('~/views/system/tenant/index.vue'),
         meta: {
           title: '租户管理',
-          icon: 'bi:person-vcard-fill',
           perm: 'system:tenant'
         }
       },
@@ -24,7 +34,6 @@ export const bizRoutes = [
         component: () => import('~/views/system/user/index.vue'),
         meta: {
           title: '用户管理',
-          icon: 'bi:shield-lock-fill',
           perm: 'system:user'
         }
       },
@@ -34,7 +43,6 @@ export const bizRoutes = [
         component: () => import('~/views/system/log/index.vue'),
         meta: {
           title: '日志管理',
-          icon: 'bi:person-circle',
           perm: 'system:log'
         }
       }

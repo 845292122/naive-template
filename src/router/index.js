@@ -15,14 +15,6 @@ export const router = createRouter({
       }
     },
     {
-      name: 'Home',
-      path: '/',
-      component: () => import('~/views/home/index.vue'),
-      meta: {
-        title: '首页'
-      }
-    },
-    {
       name: 'Profile',
       path: '/profile',
       component: () => import('~/views/profile/index.vue'),

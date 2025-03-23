@@ -8,6 +8,7 @@ export const useAuthStore = defineStore('authStore', {
   state: () => ({
     token: TokenUtil.getToken(),
     permRoutes: [],
+    perms: ['system:tenant', 'system:user', 'system:log'],
     info: undefined
   }),
   actions: {
