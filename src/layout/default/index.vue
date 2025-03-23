@@ -35,7 +35,7 @@ const appStore = useAppStore()
         <SideMenu />
       </n-layout-sider>
 
-      <n-layout content-style="padding: 24px;" :native-scrollbar="false">
+      <n-layout content-style="padding: 16px;" :native-scrollbar="false" style="background-color: #f2f3f5">
         <slot />
       </n-layout>
     </n-layout>

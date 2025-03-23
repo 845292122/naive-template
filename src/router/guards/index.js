@@ -1,4 +1,4 @@
-// import { createLoadingGuard } from './loading-guard'
+import { createLoadingGuard } from './loading-guard'
 // import { createPermissionGuard } from './permission-guard'
 
 /**
@@ -6,6 +6,6 @@
  * TODO 路由权限认证
  */
 export function setupRouterGuard(router) {
-  // createLoadingGuard(router)
+  createLoadingGuard(router)
   // createPermissionGuard(router)
 }
